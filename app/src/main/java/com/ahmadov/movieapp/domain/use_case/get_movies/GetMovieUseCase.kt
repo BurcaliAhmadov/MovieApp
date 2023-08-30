@@ -1,6 +1,6 @@
 package com.ahmadov.movieapp.domain.use_case.get_movies
 
-import android.net.http.HttpException
+
 import com.ahmadov.movieapp.data.remote.dto.toMovieList
 import com.ahmadov.movieapp.domain.model.Movie
 import com.ahmadov.movieapp.domain.repository.MovieRepository
