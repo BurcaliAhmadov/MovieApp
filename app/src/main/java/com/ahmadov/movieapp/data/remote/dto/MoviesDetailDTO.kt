@@ -3,7 +3,7 @@ package com.ahmadov.movieapp.data.remote.dto
 import com.ahmadov.movieapp.domain.model.MovieDetail
 import com.google.gson.annotations.SerializedName
 
-data class MoviesDetailDTO(
+data class MovieDetailDto(
     @SerializedName("Actors")
     val actors: String,
     @SerializedName("Awards")
@@ -56,6 +56,7 @@ data class MoviesDetailDTO(
     val imdbVotes: String
 )
 
-fun MoviesDetailDTO.toMovieDetail():MovieDetail{
+fun MovieDetailDto.toMovieDetail() : MovieDetail {
+
     return MovieDetail(actors, awards, country, director, genre, language, poster, rated, released, title, type, year, imdbRating, imdbVotes)
 }

@@ -7,6 +7,7 @@ import com.ahmadov.movieapp.domain.repository.MovieRepository
 import com.ahmadov.movieapp.util.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import retrofit2.HttpException
 import java.io.IOError
 import javax.inject.Inject
 
@@ -15,15 +16,15 @@ class GetMovieUseCase @Inject constructor(private val repository:MovieRepository
         try{
             emit(Resource.Loading())
             val movieList = repository.getMovies(search = search)
-            if(movieList.response=="true"){
+            if(movieList.response.equals("True")){
                 emit(Resource.Success(movieList.toMovieList()))
             }else{
                 emit(Resource.Error(message = "No Movie Found!",null))
             }
 
-        }catch (e:IOError){
+        }catch (e: HttpException){
             emit(Resource.Error("No Internet Connection"))
-        }catch (e : Exception){
+        }catch (e : IOError){
             emit((Resource.Error(e.localizedMessage ?:"Error")))
         }
 

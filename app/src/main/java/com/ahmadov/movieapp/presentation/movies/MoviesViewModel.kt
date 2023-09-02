@@ -28,14 +28,18 @@ class MoviesViewModel @Inject constructor(
         job?.cancel()
         job= getMovieUseCase.executeGetMovies(search = search).onEach {
 
+
+
             when(it){
                 is Resource.Success -> {
                     _state.value=MoviesState(movies = it.data ?: emptyList())
+
+
                 }
-                is Resource.Loading -> {
+                is Resource.Error -> {
                     _state.value= MoviesState(error = it.message ?: "Error")
                 }
-                is Resource.Error ->  {
+                is Resource.Loading ->  {
                     _state.value = MoviesState(isLoading = true)
                 }
             }

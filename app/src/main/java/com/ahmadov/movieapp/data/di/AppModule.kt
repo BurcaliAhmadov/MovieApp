@@ -1,6 +1,7 @@
 package com.ahmadov.movieapp.data.di
 
-import com.ahmadov.movieapp.data.remote.MovieApi
+
+import com.ahmadov.movieapp.data.remote.MovieAPI
 import com.ahmadov.movieapp.data.repository.MovieRepositoryImpl
 import com.ahmadov.movieapp.domain.repository.MovieRepository
 import com.ahmadov.movieapp.util.Constants.BASE_URL
@@ -18,16 +19,16 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideMovieApi() : MovieApi{
+    fun provideMovieApi() : MovieAPI{
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
-            .build().create(MovieApi::class.java)
+            .build().create(MovieAPI::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideMovieRepository(api:MovieApi) :MovieRepository{
+    fun provideMovieRepository(api:MovieAPI) :MovieRepository{
         return MovieRepositoryImpl(api=api)
     }
 
